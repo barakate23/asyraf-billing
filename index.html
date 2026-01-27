@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AsyrafUwais PlayStation - Dashboard Kasir v14.6</title>
+    <title>AsyrafUwais PlayStation - Live System v15.3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap');
@@ -14,24 +14,24 @@
             color: #f8fafc;
         }
 
-        /* --- PERBAIKAN BACKGROUND LOGIN --- */
+        /* PASTIKAN NAMA FILE GAMBAR DI GITHUB ADALAH 'FIX BRO.png' (Huruf Besar & Spasi) */
         #login-screen {
-            /* Diarahkan ke FIX BRO.png sesuai file di GitHub abang */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('FIX BRO.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('FIX%20BRO.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .glass-card {
-            background: rgba(30, 41, 59, 0.75);
+            background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .ps-active {
             border-color: #3b82f6;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
         }
 
         .badge-ps3 { background-color: #ef4444; }
@@ -39,7 +39,7 @@
 
         .argo-text {
             color: #10b981;
-            text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
         .receipt-paper {
@@ -78,102 +78,99 @@
     <!-- Halaman Login -->
     <div id="login-screen" class="fixed inset-0 z-[200] flex items-center justify-center p-4 text-center">
         <div class="glass-card max-w-sm w-full rounded-[2.5rem] p-10 border border-white/10 shadow-2xl text-white">
-            <div class="bg-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-xl shadow-blue-500/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
             </div>
-            <h2 class="text-lg font-extrabold mb-1 uppercase tracking-tight text-white">LOGIN ADMIN</h2>
-            <p class="text-slate-400 mb-6 text-[8px] uppercase tracking-[0.2em] font-bold italic">AsyrafUwais PlayStation</p>
+            <h2 class="text-2xl font-black mb-1 uppercase tracking-tight text-white">LOGIN ADMIN</h2>
+            <p class="text-slate-400 mb-8 text-[10px] uppercase tracking-[0.3em] font-bold italic">AsyrafUwais PlayStation</p>
             
             <div class="space-y-4">
-                <!-- Perbaikan: Tulisan PIN dibuat lebih kecil agar tidak terpotong -->
-                <div class="relative">
-                    <input type="password" id="login-pin" placeholder="PIN" class="w-full bg-slate-900/90 border border-white/10 rounded-xl py-2 text-center text-sm tracking-[0.4em] outline-none focus:ring-2 focus:ring-blue-500 transition shadow-inner text-white placeholder:text-[10px] placeholder:tracking-normal">
-                </div>
-                <button data-pro-action="auth-login" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl transition shadow-lg active:scale-95 uppercase tracking-widest text-[10px]">Masuk Sistem</button>
+                <input type="password" id="login-pin" placeholder="MASUKKAN PIN" class="w-full bg-slate-900/90 border border-white/10 rounded-xl py-3 text-center text-xl tracking-[0.4em] outline-none focus:ring-2 focus:ring-blue-500 transition shadow-inner text-white font-bold">
+                <button data-pro-action="auth-login" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl transition shadow-lg active:scale-95 uppercase tracking-widest text-[11px]">Masuk Sistem</button>
             </div>
-            <p id="login-error" class="text-rose-500 text-[9px] font-bold mt-6 hidden uppercase tracking-widest text-center">MAAF, PIN SALAH!</p>
+            <p id="login-error" class="text-rose-500 text-[10px] font-bold mt-6 hidden uppercase tracking-widest text-center animate-pulse">PIN TIDAK DITEMUKAN</p>
         </div>
     </div>
 
     <!-- Dashboard Utama -->
     <div id="main-app" class="hidden">
-        <header class="sticky top-0 z-50 glass-card border-b border-white/10 px-6 py-3 mb-6 no-print">
+        <header class="sticky top-0 z-50 glass-card border-b border-white/10 px-6 py-3 mb-6 no-print text-white">
             <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 text-white">
                     <div class="bg-blue-600 p-2 rounded-2xl">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-lg font-extrabold tracking-tight uppercase text-white">AsyrafUwais</h1>
+                        <h1 class="text-lg font-black tracking-tight uppercase text-white">AsyrafUwais</h1>
                         <p class="text-[8px] text-slate-400 font-extrabold uppercase tracking-widest" id="role-text-display">Role: Guest</p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 text-white">
                     <button data-pro-action="modal-settings-open" id="nav-setting-btn" class="hidden px-4 py-2 bg-slate-800 rounded-xl hover:bg-slate-700 transition border border-white/5 text-[9px] font-bold uppercase tracking-widest shadow-lg text-white">⚙️ PENGATURAN</button>
-                    <button data-pro-action="auth-logout" class="px-4 py-2 bg-rose-600/10 text-rose-500 border border-rose-500/20 rounded-xl text-[9px] font-bold hover:bg-rose-600 hover:text-white transition uppercase">Logout</button>
+                    <button data-pro-action="auth-logout" class="px-4 py-2 bg-rose-600/10 text-rose-500 border border-rose-500/20 rounded-xl text-[9px] font-bold hover:bg-rose-600 hover:text-white transition uppercase text-white">Logout</button>
                     <div id="digital-clock" class="text-md font-mono font-bold bg-slate-900/50 px-4 py-2 rounded-2xl border border-white/5 text-blue-400 min-w-[100px] text-center shadow-inner text-white">00:00:00</div>
                 </div>
             </div>
         </header>
 
         <main class="max-w-[1800px] mx-auto px-6 no-print pb-24 text-white">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 text-white">
                 
                 <!-- KOLOM KIRI (66%): UNIT & LAPORAN -->
-                <div class="lg:col-span-8 space-y-6">
+                <div class="lg:col-span-8 space-y-6 text-white text-white">
                     
                     <!-- Laporan Keuangan Dashboard (Hanya Owner) -->
-                    <div id="owner-report-bar" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-blue-500 flex items-center justify-between shadow-lg">
+                    <div id="owner-report-bar" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-white text-white">
+                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-blue-500 flex items-center justify-between shadow-lg text-white text-white">
                             <div>
                                 <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 text-white">Pemasukan Hari Ini</p>
-                                <h4 class="text-xl font-black text-white font-mono" id="stat-omzet">Rp 0</h4>
+                                <h4 class="text-2xl font-black text-white font-mono" id="stat-omzet">Rp 0</h4>
                             </div>
                             <div class="bg-blue-500/10 p-2 rounded-xl text-blue-500 text-xl text-white">💰</div>
                         </div>
-                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-emerald-500 flex items-center justify-between shadow-lg">
+                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-emerald-500 flex items-center justify-between shadow-lg text-white">
                             <div>
-                                <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 text-white">Untung Bersih</p>
-                                <h4 class="text-xl font-black text-emerald-400 font-mono text-white" id="stat-profit">Rp 0</h4>
+                                <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 text-white text-white">Untung Bersih</p>
+                                <h4 class="text-2xl font-black text-emerald-400 font-mono text-white" id="stat-profit">Rp 0</h4>
                             </div>
                             <div class="bg-emerald-500/10 p-2 rounded-xl text-emerald-500 text-xl text-white">📈</div>
                         </div>
-                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-orange-500 flex items-center justify-between shadow-lg">
+                        <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-orange-500 flex items-center justify-between shadow-lg text-white text-white">
                             <div>
-                                <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 text-white text-white">Total Sesi</p>
-                                <h4 class="text-xl font-black text-white font-mono" id="stat-count">0</h4>
+                                <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 text-white">Total Sesi</p>
+                                <h4 class="text-2xl font-black text-white font-mono" id="stat-count">0</h4>
                             </div>
                             <div class="bg-orange-500/10 p-2 rounded-xl text-orange-500 text-xl text-white">🎮</div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between mb-4 text-white">
-                        <h2 class="text-xl font-black uppercase tracking-tight flex items-center gap-3">
-                            <span class="w-1 h-6 bg-blue-500 rounded-full"></span>
+                    <div class="flex items-center justify-between mb-4 text-white text-white">
+                        <h2 class="text-xl font-black uppercase tracking-tight flex items-center gap-3 text-white">
+                            <span class="w-1 h-6 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"></span>
                             UNIT CONSUL
                         </h2>
-                        <div id="sync-label" class="px-3 py-1 bg-slate-800 rounded-full text-[8px] font-extrabold text-slate-400 border border-white/5 uppercase tracking-widest italic text-white text-white">Syncing...</div>
+                        <div id="sync-label" class="px-3 py-1 bg-slate-800 rounded-full text-[8px] font-extrabold text-slate-400 border border-white/5 uppercase tracking-widest italic text-white text-white">Menghubungkan...</div>
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 text-white" id="stations-grid-ui"></div>
                 </div>
 
                 <!-- KOLOM KANAN (33%): MENU & PENAGIHAN -->
-                <div class="lg:col-span-4 space-y-8">
-                    <div class="glass-card rounded-[2rem] p-6 border border-white/5 shadow-2xl text-white">
+                <div class="lg:col-span-4 space-y-8 text-white">
+                    <div class="glass-card rounded-[2rem] p-6 border border-white/5 shadow-2xl text-white text-white">
                         <h2 class="text-lg font-bold mb-5 uppercase flex items-center gap-3 text-white">
-                            <span class="w-1 h-7 bg-orange-500 rounded-full"></span> MENU CAFE
+                            <span class="w-1 h-7 bg-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)]"></span> MENU CAFE
                         </h2>
                         <div class="space-y-3 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar text-white text-white" id="menu-list-ui"></div>
                     </div>
 
-                    <div id="summary-panel-card" class="glass-card rounded-[2rem] p-6 border-t-8 border-emerald-500 hidden shadow-2xl animate-in slide-in-from-bottom-10 duration-500 text-white">
-                        <h2 class="text-lg font-bold mb-4 text-emerald-400 uppercase tracking-widest text-center">PENAGIHAN</h2>
+                    <div id="summary-panel-card" class="glass-card rounded-[2rem] p-6 border-t-8 border-emerald-500 hidden shadow-2xl animate-in slide-in-from-bottom-10 duration-500 text-white text-white">
+                        <h2 class="text-lg font-bold mb-4 text-emerald-400 uppercase tracking-widest text-center text-white">PENAGIHAN</h2>
                         <div id="summary-render-area" class="space-y-5 text-sm text-white"></div>
                     </div>
                 </div>
@@ -182,9 +179,9 @@
     </div>
 
     <!-- Modal PENGATURAN -->
-    <div id="settings-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 hidden no-print text-white text-white">
-        <div class="glass-card max-w-5xl w-full rounded-[2.5rem] p-8 max-h-[90vh] overflow-y-auto custom-scrollbar border border-white/10 shadow-2xl">
-            <div class="flex justify-between items-center mb-8">
+    <div id="settings-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 hidden no-print text-white text-white text-white">
+        <div class="glass-card max-w-5xl w-full rounded-[2.5rem] p-8 max-h-[90vh] overflow-y-auto custom-scrollbar border border-white/10 shadow-2xl text-white">
+            <div class="flex justify-between items-center mb-8 text-white">
                 <h3 class="text-2xl font-black uppercase tracking-tighter text-white">PENGATURAN SISTEM</h3>
                 <button data-pro-action="modal-settings-close" class="p-3 bg-slate-800 rounded-2xl hover:bg-rose-600 transition shadow-lg text-white">✕</button>
             </div>
@@ -192,12 +189,12 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white text-white">
                 <div class="space-y-8 text-white">
                     <!-- Unit TV -->
-                    <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner">
-                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 italic underline underline-offset-8">Unit TV / PS</h4>
+                    <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
+                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Unit TV / PS</h4>
                         <div id="settings-stations-list" class="space-y-2 mb-6 text-white text-white"></div>
-                        <div class="space-y-3 bg-black/30 p-4 rounded-xl">
+                        <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white">
                             <input type="text" id="add-st-name" placeholder="Nama TV (Cth: TV 01)" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white">
-                            <select id="add-st-type" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
+                            <select id="add-st-type" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white">
                                 <option value="PS3">PlayStation 3 (8k/jam)</option>
                                 <option value="PS4">PlayStation 4 (10k/jam)</option>
                             </select>
@@ -210,10 +207,10 @@
                         <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Daftar User</h4>
                         <div id="settings-users-list" class="space-y-2 mb-6 text-white text-white"></div>
                         <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white">
-                            <input type="text" id="add-user-name" placeholder="Nama User" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white">
+                            <input type="text" id="add-user-name" placeholder="Nama User" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
                             <input type="password" id="add-user-pin" placeholder="PIN" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                            <select id="add-user-role" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white">
-                                <option value="kasir">Kasir</option>
+                            <select id="add-user-role" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
+                                <option value="kasir">Akses: Kasir</option>
                                 <option value="owner">Owner</option>
                             </select>
                             <button data-pro-action="submit-user-add" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white">Simpan User</button>
@@ -225,11 +222,11 @@
                 <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
                     <h4 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white text-white">Manajemen Menu</h4>
                     <div id="settings-menu-list" class="space-y-2 mb-6 text-white text-white text-white"></div>
-                    <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white">
-                        <input type="text" id="add-mn-name" placeholder="Nama Produk/Makanan" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white">
-                        <div class="grid grid-cols-2 gap-2 text-white">
+                    <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white text-white">
+                        <input type="text" id="add-mn-name" placeholder="Nama Produk/Makanan" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
+                        <div class="grid grid-cols-2 gap-2 text-white text-white text-white">
                             <input type="number" id="add-mn-modal" placeholder="Modal" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                            <input type="number" id="add-mn-price" placeholder="Harga Jual" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white">
+                            <input type="number" id="add-mn-price" placeholder="Harga Jual" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
                         </div>
                         <button data-pro-action="submit-mn-add" class="w-full py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white text-white">Tambah Ke Menu</button>
                     </div>
@@ -239,34 +236,34 @@
     </div>
 
     <!-- Modal Atur Masa Billing -->
-    <div id="time-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white text-white text-white text-white">
+    <div id="time-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white text-white text-white text-white text-white">
         <div class="glass-card max-w-sm w-full rounded-[2rem] p-8 shadow-2xl text-center text-white">
             <h3 class="text-xl font-black mb-6 uppercase tracking-tighter text-white">Setting Masa Main</h3>
-            <div class="space-y-5">
-                <div class="grid grid-cols-2 gap-2 text-white">
+            <div class="space-y-5 text-white">
+                <div class="grid grid-cols-2 gap-2 text-white text-white">
                     <button class="btn-time-shortcut py-3 rounded-lg bg-slate-800 font-bold hover:bg-slate-700 transition text-[10px]" data-m="60">1 Jam</button>
                     <button class="btn-time-shortcut py-3 rounded-lg bg-slate-800 font-bold hover:bg-slate-700 transition text-[10px]" data-m="120">2 Jam</button>
                     <button class="btn-time-shortcut col-span-2 py-3 rounded-lg bg-emerald-600/20 text-emerald-400 font-black border border-emerald-500/20 hover:bg-emerald-600/30 transition uppercase text-[9px]" data-m="0">Mode Argo (Bayar Per Menit)</button>
                 </div>
-                <div class="grid grid-cols-2 gap-3 text-white text-white">
-                    <input type="number" id="h-input-custom" placeholder="Jam" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white">
-                    <input type="number" id="m-input-custom" placeholder="Menit" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white text-white">
+                <div class="grid grid-cols-2 gap-3 text-white text-white text-white">
+                    <input type="number" id="h-input-custom" placeholder="Jam" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white text-white text-white">
+                    <input type="number" id="m-input-custom" placeholder="Menit" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white text-white text-white">
                 </div>
-                <div class="flex gap-4 pt-4 text-white">
-                    <button data-pro-action="modal-time-close" class="flex-1 py-3 bg-slate-800 rounded-xl font-bold hover:bg-rose-600 transition text-[10px] uppercase text-white">Batal</button>
-                    <button data-pro-action="submit-start-bill" class="flex-1 py-3 bg-blue-600 rounded-xl font-black shadow-lg uppercase text-[10px] text-white">Mulai</button>
+                <div class="flex gap-4 pt-4 text-white text-white text-white">
+                    <button data-pro-action="modal-time-close" class="flex-1 py-3 bg-slate-800 rounded-xl font-bold hover:bg-rose-600 transition text-[10px] uppercase text-white text-white">Batal</button>
+                    <button data-pro-action="submit-start-bill" class="flex-1 py-3 bg-blue-600 rounded-xl font-black shadow-lg uppercase text-[10px] text-white text-white">Mulai</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal Resit -->
-    <div id="receipt-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white">
-        <div class="receipt-paper w-full max-w-[340px] p-8 rounded-sm mx-auto shadow-2xl animate-in zoom-in-95 duration-300">
-            <div id="receipt-content-area" class="text-[11px] leading-tight font-mono text-black"></div>
-            <div class="flex gap-3 mt-10 no-print text-white text-white">
+    <div id="receipt-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white text-white text-white text-white">
+        <div class="receipt-paper w-full max-w-[340px] p-8 rounded-sm mx-auto shadow-2xl animate-in zoom-in-95 duration-300 text-black">
+            <div id="receipt-content-area" class="text-[11px] leading-tight font-mono text-black text-black text-black text-black"></div>
+            <div class="flex gap-3 mt-10 no-print text-white text-white text-white text-white">
                 <button onclick="window.print()" class="flex-1 py-3 bg-slate-200 text-black font-black uppercase text-[10px]">CETAK</button>
-                <button data-pro-action="modal-receipt-close" class="flex-1 py-3 bg-black text-white font-black uppercase text-[10px] hover:bg-zinc-800 transition text-white text-white">Selesai</button>
+                <button data-pro-action="modal-receipt-close" class="flex-1 py-3 bg-black text-white font-black uppercase text-[10px] hover:bg-zinc-800 transition text-white text-white text-white">Selesai</button>
             </div>
         </div>
     </div>
@@ -276,7 +273,26 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, serverTimestamp, deleteDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // --- GLOBAL UTILS (TOP OF SCRIPT) ---
+        // --- KONFIGURASI ---
+        const firebaseConfig = {
+          apiKey: "AIzaSyCjcWLDqxPE6T8OFL0QHzhYBOfbStEKSFU",
+          authDomain: "asyrafuwais-ps.firebaseapp.com",
+          projectId: "asyrafuwais-ps",
+          storageBucket: "asyrafuwais-ps.firebasestorage.app",
+          messagingSenderId: "1084965757171",
+          appId: "1:1084965757171:web:4f02e4deb5fc11ed6bd786",
+          measurementId: "G-ZPMBH9J0P7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // KUNCI ID DATABASE TETAP
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'asyrafuwais-ps-v15-fix-stable';
+        const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // --- FUNGSI GLOBAL (DILETAKKAN DI ATAS UNTUK HOISTING) ---
         const formatNumber = (n) => new Intl.NumberFormat('id-ID').format(n || 0);
         const formatTime = (s) => { 
             const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60; 
@@ -293,13 +309,6 @@
             setTimeout(() => { if(toast) toast.remove(); }, 3000);
         };
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'asyrafuwais-ps-v14-final-6';
-        const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
         let stations = [];
         let cafeMenu = [];
         let users = [];
@@ -309,14 +318,23 @@
         let currentDraftOrder = null;
         let currentUserData = null; 
 
+        // --- ERROR HANDLING AUTH ---
         const ensureAuth = async () => {
             if (!auth.currentUser) {
-                if (initialToken) await signInWithCustomToken(auth, initialToken).catch(() => signInAnonymously(auth));
-                else await signInAnonymously(auth);
+                try {
+                    await signInAnonymously(auth);
+                } catch (error) {
+                    if (error.code === 'auth/admin-restricted-operation') {
+                        alert("PENTING: Sila aktifkan 'Anonymous' di menu Authentication > Sign-in method dalam Firebase Console.");
+                    } else {
+                        console.error("Auth Error:", error);
+                        showToast("Masalah Login: " + error.message, "error");
+                    }
+                }
             }
         };
 
-        // --- SYNC ENGINE ---
+        // --- SINKRONISASI DATA ---
         async function startSystemSync() {
             await ensureAuth();
             onAuthStateChanged(auth, (user) => {
@@ -328,16 +346,19 @@
                         if(label) label.textContent = "CLOUD TERHUBUNG";
                         renderStationsUI();
                         renderSettingsStations();
-                    }, (err) => console.error("Sync Error:", err));
+                    }, (err) => console.error("Permission denied: stations"));
 
                     onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'cafe_menu'), (snap) => {
                         const data = []; snap.forEach(d => data.push({ fid: d.id, ...d.data() }));
                         cafeMenu = data;
                         renderCafeMenuUI();
                         renderSettingsMenu();
-                    });
+                    }, (err) => console.error("Permission denied: menu"));
 
                     if(currentUserData?.role === 'owner') {
+                        const rBar = document.getElementById('owner-report-bar');
+                        if(rBar) rBar.classList.remove('hidden');
+                        
                         onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'users'), (snap) => {
                             const data = []; snap.forEach(d => data.push({ fid: d.id, ...d.data() }));
                             users = data;
@@ -354,35 +375,48 @@
             });
         }
 
+        // --- LOGIN ACTION ---
         const handleLogin = async () => {
             const pinEl = document.getElementById('login-pin');
             const pin = pinEl ? pinEl.value : '';
             if(!pin) return;
             await ensureAuth();
-            const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'users'));
-            let found = null;
-            if(snap.empty && pin === "1234") {
-                found = { name: "Owner Utama", role: "owner", pin: "1234" };
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `u-${Date.now()}`), found);
-            } else {
-                snap.forEach(d => { if(d.data().pin === pin) found = { fid: d.id, ...d.data() }; });
-            }
-            if (found) {
-                currentUserData = found;
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('main-app').classList.remove('hidden');
-                const roleEl = document.getElementById('role-text-display');
-                if(roleEl) roleEl.textContent = `Role: ${found.name} (${found.role.toUpperCase()})`;
-                if(found.role === 'owner') {
-                    const rBar = document.getElementById('owner-report-bar');
-                    if(rBar) rBar.classList.remove('hidden');
-                    const nBtn = document.getElementById('nav-setting-btn');
-                    if(nBtn) nBtn.classList.remove('hidden');
+            
+            try {
+                const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'users'));
+                let found = null;
+                
+                if(snap.empty && pin === "1234") {
+                    found = { name: "Root Owner", role: "owner", pin: "1234" };
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `u-${Date.now()}`), found);
+                } else {
+                    snap.forEach(d => { if(d.data().pin === pin) found = { fid: d.id, ...d.data() }; });
                 }
-                startSystemSync();
-            } else { document.getElementById('login-error').classList.remove('hidden'); }
+                
+                if (found) {
+                    currentUserData = found;
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('main-app').classList.remove('hidden');
+                    const roleEl = document.getElementById('role-text-display');
+                    if(roleEl) roleEl.textContent = `Role: ${found.name} (${found.role.toUpperCase()})`;
+                    if(found.role === 'owner') {
+                        const navSet = document.getElementById('nav-setting-btn');
+                        if(navSet) navSet.classList.remove('hidden');
+                    }
+                    startSystemSync();
+                } else { 
+                    const errEl = document.getElementById('login-error');
+                    if(errEl) errEl.classList.remove('hidden'); 
+                }
+            } catch (err) {
+                console.error(err);
+                if (err.code === 'permission-denied') {
+                     alert("Akses Database Ditolak. Pastikan Rules Firebase benar.");
+                }
+            }
         };
 
+        // --- GLOBAL CLICK HANDLER (PERBAIKAN MUTLAK HAPUS/EDIT) ---
         document.addEventListener('click', async (e) => {
             const btn = e.target.closest('[data-pro-action]');
             if (!btn) return;
@@ -400,14 +434,16 @@
                 else if (action === 'modal-settings-open') document.getElementById('settings-modal').classList.remove('hidden');
                 else if (action === 'modal-settings-close') document.getElementById('settings-modal').classList.add('hidden');
                 else if (action === 'modal-time-close') document.getElementById('time-modal').classList.add('hidden');
+                else if (action === 'modal-picker-close') document.getElementById('station-picker-modal').classList.add('hidden');
                 else if (action === 'modal-receipt-close') { document.getElementById('receipt-modal').classList.add('hidden'); lastBilledStation = null; }
 
+                // ADD DATA
                 else if (action === 'submit-user-add') {
-                    const n = document.getElementById('add-user-name').value;
-                    const p = document.getElementById('add-user-pin').value;
-                    const r = document.getElementById('add-user-role').value;
-                    if(!n || !p) return showToast("Isi Nama & PIN!", "error");
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `user-${Date.now()}`), { name: n, pin: p, role: r });
+                    const name = document.getElementById('add-user-name').value;
+                    const pin = document.getElementById('add-user-pin').value;
+                    const role = document.getElementById('add-user-role').value;
+                    if(!name || !pin) return showToast("Isi Nama & PIN!", "error");
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `u-${Date.now()}`), { name, pin, role });
                     document.getElementById('add-user-name').value = ""; document.getElementById('add-user-pin').value = "";
                     showToast("User berhasil disimpan");
                 }
@@ -417,22 +453,23 @@
                     if(!n) return showToast("Isi Nama Unit!", "error");
                     await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', `tv-${Date.now()}`), { id: Date.now(), name: n, type: t, isActive: false, orders: [] });
                     document.getElementById('add-st-name').value = "";
-                    showToast("Unit TV ditambah");
+                    showToast("Unit TV berhasil ditambah");
                 }
                 else if (action === 'submit-mn-add') {
                     const n = document.getElementById('add-mn-name').value;
                     const p = parseInt(document.getElementById('add-mn-price').value);
                     const m = parseInt(document.getElementById('add-mn-modal').value || 0);
                     if(!n || isNaN(p)) return showToast("Isi Nama & Harga!", "error");
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', `menu-${Date.now()}`), { name: n, price: p, modal: m });
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', `m-${Date.now()}`), { name, price, modal });
                     document.getElementById('add-mn-name').value = ""; document.getElementById('add-mn-price').value = ""; document.getElementById('add-mn-modal').value = "";
-                    showToast("Menu ditambah");
+                    showToast("Menu berhasil ditambah");
                 }
 
-                // DELETE & EDIT (FIXED ID FETCHING)
-                else if (action === 'delete-st' && confirm("Hapus Unit TV?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', fid)); showToast("Unit dipadam"); }
-                else if (action === 'delete-mn' && confirm("Hapus Menu?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', fid)); showToast("Menu dipadam"); }
-                else if (action === 'delete-usr' && confirm("Hapus Akses User?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', fid)); showToast("Akses dicabut"); }
+                // DELETE & EDIT
+                else if (action === 'delete-st' && confirm("Hapus Unit ini secara permanen?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', fid)); showToast("Unit dipadam"); }
+                else if (action === 'delete-mn' && confirm("Hapus Menu ini?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', fid)); showToast("Menu dipadam"); }
+                else if (action === 'delete-usr' && confirm("Hapus User?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', fid)); showToast("Akses dicabut"); }
+                
                 else if (action === 'edit-st') {
                     const st = stations.find(x => x.fid === fid);
                     if(st) {
@@ -443,10 +480,10 @@
                 else if (action === 'edit-mn') {
                     const m = cafeMenu.find(x => x.fid === fid);
                     if(m) {
-                        const nN = prompt("Ganti Nama Menu:", m.name); if(nN === null) return;
-                        const nP = prompt("Ganti Harga Jual:", m.price); if(nP === null) return;
-                        const nM = prompt("Ganti Modal:", m.modal || 0); if(nM === null) return;
-                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', fid), { name: nN, price: parseInt(nP), modal: parseInt(nM) });
+                        const nName = prompt("Ganti Nama Menu:", m.name); if(nName === null) return;
+                        const nPrice = prompt("Ganti Harga Jual:", m.price); if(nPrice === null) return;
+                        const nModal = prompt("Ganti Modal:", m.modal || 0); if(nModal === null) return;
+                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', fid), { name: nName, price: parseInt(nPrice), modal: parseInt(nModal) });
                         showToast("Menu diperbarui");
                     }
                 }
@@ -456,10 +493,10 @@
                 else if (action === 'submit-start-bill') {
                     const h = parseInt(document.getElementById('h-input-custom').value) || 0;
                     const m = parseInt(document.getElementById('m-input-custom').value) || 0;
-                    const totalSec = ((h * 60) + m) * 60;
+                    const tot = ((h * 60) + m) * 60;
                     const s = stations.find(st => st.id === activeStationId);
                     if(s) {
-                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', s.fid), { isActive: true, isTimed: totalSec > 0, startTime: serverTimestamp(), targetSeconds: totalSec, orders: [] });
+                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', s.fid), { isActive: true, isTimed: tot > 0, startTime: serverTimestamp(), targetSeconds: tot, orders: [] });
                         document.getElementById('time-modal').classList.add('hidden');
                         showToast("Billing dimulai");
                     }
@@ -467,20 +504,28 @@
                 else if (action === 'stop-billing-trigger') triggerFinalSummary(parseInt(id));
                 else if (action === 'checkout-final') processCheckout();
 
-                // CAFE ACTIONS
                 else if (action === 'cafe-order-pick') {
-                    currentDraftOrder = { ...cafeMenu[parseInt(btn.getAttribute('data-index'))], qty: 1 };
+                    currentDraftOrder = { ...cafeMenu[parseInt(btn.getAttribute('data-index'))], qty: cafeMenu[parseInt(btn.getAttribute('data-index'))].qty || 1 };
                     const active = stations.filter(s => s.isActive);
-                    if(!active.length) return showToast("Unit TV mesti aktif!", "error");
-                    const targetName = prompt(`Kirim ${currentDraftOrder.name} ke Unit mana?\n\nKetik Nama TV (Cth: TV 01):`);
-                    if(!targetName) return;
-                    const s = stations.find(st => st.name.toLowerCase() === targetName.toLowerCase() && st.isActive);
-                    if(s) {
-                        const orders = [...(s.orders || [])];
-                        orders.push({ name: currentDraftOrder.name, price: currentDraftOrder.price, qty: 1 });
-                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', s.fid), { orders });
-                        showToast("Pesanan dihantar");
-                    } else { showToast("Unit tidak aktif / salah nama", "error"); }
+                    if(!active.length) return showToast("Aktifkan TV dulu!", "error");
+                    document.getElementById('picker-info-text').textContent = `Pesan ${currentDraftOrder.qty}x ${currentDraftOrder.name} ke:`;
+                    document.getElementById('picker-stations-ui').innerHTML = active.map(s => `<button data-pro-action="cafe-send-cloud" data-fid="${s.fid}" class="p-5 bg-slate-800 rounded-xl text-white font-bold border border-white/5 hover:bg-blue-600 transition shadow-lg uppercase text-[9px] text-white text-white">${s.name}</button>`).join('');
+                    document.getElementById('station-picker-modal').classList.remove('hidden');
+                }
+                else if (action === 'cafe-send-cloud') {
+                    const s = stations.find(st => st.fid === fid);
+                    const orders = [...(s.orders || [])];
+                    const ex = orders.find(o => o.name === currentDraftOrder.name);
+                    if(ex) ex.qty += currentDraftOrder.qty;
+                    else orders.push({ name: currentDraftOrder.name, price: currentDraftOrder.price, qty: currentDraftOrder.qty });
+                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', fid), { orders });
+                    document.getElementById('station-picker-modal').classList.add('hidden');
+                    showToast("Pesanan dihantar");
+                }
+                else if (action === 'cafe-qty-local') {
+                    const idx = parseInt(btn.getAttribute('data-index')); const d = parseInt(btn.getAttribute('data-delta'));
+                    cafeMenu[idx].qty = Math.max(1, (cafeMenu[idx].qty || 1) + d);
+                    renderCafeMenuUI();
                 }
 
             } catch (err) { showToast(err.message, "error"); }
@@ -500,6 +545,7 @@
                 let timeDisp = s.isActive ? (s.isTimed ? formatTime(Math.max(0, Math.floor(s.targetSeconds) - elapsed)) : formatTime(elapsed)) : "00:00:00";
                 const rate = s.type === 'PS3' ? 8000 : 10000;
                 const rentCost = Math.floor((Math.max(elapsed, 60) / 3600) * rate);
+                const foodCost = (s.orders || []).reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
                 return `
                 <div class="glass-card rounded-[1.2rem] p-4 transition-all duration-300 ${s.isActive ? 'ps-active border-blue-500/40' : 'opacity-80'} shadow-lg text-white">
                     <div class="flex justify-between items-start mb-3">
@@ -513,10 +559,11 @@
                         <p class="text-xl font-mono font-black text-blue-400 tracking-tighter">${timeDisp}</p>
                     </div>
                     <div class="py-2 border-y border-white/5 mb-3 font-mono">
-                        <p class="text-[7px] uppercase font-black mb-1 opacity-60">Tagihan Semasa</p>
-                        <p class="text-lg font-black argo-text tracking-tighter">Rp ${formatNumber(rentCost)}</p>
+                        <p class="text-[7px] uppercase font-black mb-1 opacity-60">Tagihan</p>
+                        <p class="text-lg font-black argo-text tracking-tighter">Rp ${formatNumber(rentCost + foodCost)}</p>
                     </div>
-                    <button data-pro-action="${s.isActive ? 'stop-billing-trigger' : 'open-billing'}" data-id="${s.id}" class="w-full py-2.5 ${s.isActive ? 'bg-rose-600/20 text-rose-500 border border-rose-500/20' : 'bg-blue-600 text-white shadow-lg'} rounded-lg font-black uppercase text-[9px] tracking-widest active:scale-95 transition">
+                    ${s.isActive && s.orders && s.orders.length > 0 ? `<div class="mb-3 space-y-1 bg-black/20 p-2 rounded-lg text-[8px] font-mono text-slate-300 border border-white/5">${s.orders.map(o => `<div class="flex justify-between italic"><span>${o.name} <b class="text-blue-400">x${o.qty}</b></span><span>${formatNumber(o.price * o.qty)}</span></div>`).join('')}</div>` : ''}
+                    <button data-pro-action="${s.isActive ? 'stop-billing-trigger' : 'open-billing'}" data-id="${s.id}" class="w-full py-2.5 ${s.isActive ? 'bg-rose-600/20 text-rose-500 border border-rose-500/20' : 'bg-blue-600 text-white shadow-lg'} rounded-lg font-black uppercase text-[9px] tracking-widest active:scale-95 transition text-white">
                         ${s.isActive ? 'Tagih & Selesai' : 'Buka Billing'}
                     </button>
                 </div>`;
@@ -534,31 +581,31 @@
             if(coEl) coEl.textContent = todayTrans.length;
 
             const list = document.getElementById('transaction-history-list');
-            if(list) list.innerHTML = transactions.slice(0, 50).map(t => `<tr class="border-b border-white/5 text-white"><td class="py-3 text-slate-400 italic text-[10px]">${t.timestamp ? new Date(t.timestamp.seconds * 1000).toLocaleTimeString('id-ID') : '-'}</td><td class="font-bold uppercase text-[10px]">${t.unitName}</td><td class="text-[10px]">${formatNumber(t.total)}</td><td class="text-emerald-400 font-bold text-[10px]">${formatNumber(t.profit)}</td></tr>`).join('');
+            if(list) list.innerHTML = transactions.slice(0, 50).map(t => `<tr class="border-b border-white/5 text-white"><td class="py-3 text-slate-400 italic text-[10px]">${t.timestamp ? new Date(t.timestamp.seconds * 1000).toLocaleTimeString('id-ID') : '-'}</td><td class="font-bold uppercase text-[10px] text-white">${t.unitName}</td><td class="text-[10px] text-white">${formatNumber(t.total)}</td><td class="text-emerald-400 font-bold text-[10px] text-white">${formatNumber(t.profit)}</td></tr>`).join('');
         }
 
         function renderCafeMenuUI() {
             const cont = document.getElementById('menu-list-ui');
             if(!cont) return;
-            cont.innerHTML = cafeMenu.map((m, i) => `<div class="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5 hover:border-white/10 transition group shadow-sm text-white"><div class="flex-1 text-white"><p class="font-bold text-xs uppercase">${m.name}</p><p class="text-[9px] text-emerald-400 font-black">Rp ${formatNumber(m.price)}</p></div><button data-pro-action="cafe-order-pick" data-index="${i}" class="bg-blue-600 p-2.5 rounded-lg text-white font-black hover:bg-blue-500 shadow-lg active:scale-90 transition">➕</button></div>`).join('');
+            cont.innerHTML = cafeMenu.map((m, i) => `<div class="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5 hover:border-white/10 transition group shadow-sm text-white text-white text-white"><div class="flex-1 text-white text-white"><p class="font-bold text-xs uppercase text-white">${m.name}</p><p class="text-[9px] text-emerald-400 font-black">Rp ${formatNumber(m.price)}</p></div><div class="flex items-center gap-3"><div class="flex items-center bg-slate-900 rounded-lg p-1 border border-white/10"><button data-pro-action="cafe-qty-local" data-index="${i}" data-delta="-1" class="w-6 h-6 flex items-center justify-center font-black hover:text-blue-400 transition">-</button><span class="w-6 text-center text-xs text-blue-400 font-black">${m.qty || 1}</span><button data-pro-action="cafe-qty-local" data-index="${i}" data-delta="1" class="w-6 h-6 flex items-center justify-center font-black hover:text-blue-400 transition">+</button></div><button data-pro-action="cafe-order-pick" data-index="${i}" class="bg-blue-600 p-2.5 rounded-lg text-white font-black hover:bg-blue-500 shadow-lg active:scale-90 transition text-white">➕</button></div></div>`).join('');
         }
 
         function renderSettingsStations() {
             const list = document.getElementById('settings-stations-list');
             if(!list) return;
-            list.innerHTML = stations.map(s => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white"><div><span class="px-2 py-0.5 rounded text-[7px] font-black ${s.type === 'PS3' ? 'badge-ps3' : 'badge-ps4'} shadow-sm mr-2 uppercase">${s.type}</span><span class="font-bold uppercase text-xs">${s.name}</span></div><div class="flex gap-2"><button data-pro-action="edit-st" data-fid="${s.fid}" class="px-3 py-1.5 bg-amber-500/20 text-amber-500 rounded-lg text-[8px] font-black">Edit</button><button data-pro-action="delete-st" data-fid="${s.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div></div>`).join('');
+            list.innerHTML = stations.map(s => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><span class="px-2 py-0.5 rounded text-[7px] font-black ${s.type === 'PS3' ? 'badge-ps3' : 'badge-ps4'} shadow-sm mr-2 uppercase text-white text-white text-white">${s.type}</span><span class="font-bold uppercase text-xs text-white">${s.name}</span></div><div class="flex gap-2"><button data-pro-action="edit-st" data-fid="${s.fid}" class="px-3 py-1.5 bg-amber-500/20 text-amber-500 rounded-lg text-[8px] font-black">Edit</button><button data-pro-action="delete-st" data-fid="${s.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div></div>`).join('');
         }
 
         function renderSettingsMenu() {
             const list = document.getElementById('settings-menu-list');
             if(!list) return;
-            list.innerHTML = cafeMenu.map(m => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${m.name}</p><p class="text-[8px] text-slate-400 italic text-white">M: ${formatNumber(m.modal)} | J: ${formatNumber(m.price)}</p></div><div class="flex gap-2 text-white"><button data-pro-action="edit-mn" data-fid="${m.fid}" class="px-3 py-1.5 bg-amber-500/20 text-amber-500 rounded-lg text-[8px] font-black text-white">Edit</button><button data-pro-action="delete-mn" data-fid="${m.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black text-white">Hapus</button></div></div>`).join('');
+            list.innerHTML = cafeMenu.map(m => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${m.name}</p><p class="text-[8px] text-slate-400 italic text-white text-white text-white">M: ${formatNumber(m.modal)} | J: ${formatNumber(m.price)}</p></div><div class="flex gap-2 text-white"><button data-pro-action="edit-mn" data-fid="${m.fid}" class="px-3 py-1.5 bg-amber-500/20 text-amber-500 rounded-lg text-[8px] font-black text-white">Edit</button><button data-pro-action="delete-mn" data-fid="${m.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black text-white">Hapus</button></div></div>`).join('');
         }
 
         function renderSettingsUsers() {
             const list = document.getElementById('settings-users-list');
             if(!list) return;
-            list.innerHTML = users.map(u => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${u.name}</p><p class="text-[8px] text-slate-400 uppercase text-white">${u.role}</p></div><button data-pro-action="delete-usr" data-fid="${u.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div>`).join('');
+            list.innerHTML = users.map(u => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${u.name}</p><p class="text-[8px] text-slate-400 uppercase text-white text-white text-white">${u.role}</p></div><button data-pro-action="delete-usr" data-fid="${u.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div>`).join('');
         }
 
         function triggerFinalSummary(id) {
@@ -568,22 +615,28 @@
             const elapsed = Math.floor((Date.now() - start) / 1000);
             const rate = s.type === 'PS3' ? 8000 : 10000;
             const timeCost = Math.floor((Math.max(elapsed, 60) / 3600) * rate);
-            lastBilledStation = { ...s, elapsed, total: timeCost, profit: timeCost };
+            const foodCost = (s.orders || []).reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+            const foodProfit = (s.orders || []).reduce((acc, curr) => {
+                const menuItem = cafeMenu.find(m => m.name === curr.name);
+                return acc + ((curr.price - (menuItem?.modal || 0)) * curr.qty);
+            }, 0);
+            lastBilledStation = { ...s, elapsed, total: timeCost + foodCost, timeCost, foodCost, totalProfit: timeCost + foodProfit };
 
             document.getElementById('summary-panel-card').classList.remove('hidden');
             document.getElementById('summary-render-area').innerHTML = `
                 <div class="bg-white/5 p-6 rounded-2xl border border-white/10 shadow-inner">
-                    <div class="flex justify-between mb-2 uppercase text-white text-white"><span class="text-slate-400 text-xs">Unit</span><span class="font-bold text-lg text-white">${s.name}</span></div>
-                    <div class="flex justify-between font-mono text-2xl text-blue-400 text-white text-white"><span>Durasi</span><span>${formatTime(elapsed)}</span></div>
+                    <div class="flex justify-between mb-2 uppercase text-white"><span class="text-slate-400 text-xs">Unit</span><span class="font-bold text-lg text-white">${s.name}</span></div>
+                    <div class="flex justify-between font-mono text-2xl text-blue-400 text-white"><span>Durasi</span><span>${formatTime(elapsed)}</span></div>
                 </div>
                 <table class="w-full text-xs text-white">
-                    <tr class="border-b border-white/5 font-bold"><td>Sewa PS (${s.type})</td><td class="text-right">Rp ${formatNumber(timeCost)}</td></tr>
+                    <tr class="border-b border-white/5 font-bold"><td>Sewa PS (${s.type})</td><td class="text-right text-white">Rp ${formatNumber(timeCost)}</td></tr>
+                    ${s.orders.map(o => `<tr><td class="py-2 pl-3 text-slate-400 italic font-bold text-white">- ${o.name} x${o.qty}</td><td class="text-right text-emerald-400 font-mono">Rp ${formatNumber(o.price * o.qty)}</td></tr>`).join('')}
                 </table>
                 <div class="pt-6 border-t border-dashed border-white/20 flex justify-between items-center text-white">
-                    <span class="text-xs font-black uppercase text-slate-500 tracking-widest">TOTAL</span>
-                    <span class="text-3xl font-black text-emerald-400 font-mono tracking-tighter">Rp ${formatNumber(timeCost)}</span>
+                    <span class="text-xs font-black uppercase text-slate-500 tracking-widest text-white">TOTAL</span>
+                    <span class="text-3xl font-black text-emerald-400 font-mono tracking-tighter text-white">Rp ${formatNumber(timeCost + foodCost)}</span>
                 </div>
-                <button data-pro-action="checkout-final" class="w-full py-5 mt-6 bg-emerald-600 rounded-xl font-black uppercase text-white shadow-xl hover:bg-emerald-500 transition active:scale-95 shadow-emerald-500/20 text-white">LUNAS & CETAK</button>
+                <button data-pro-action="checkout-final" class="w-full py-5 mt-6 bg-emerald-600 rounded-xl font-black uppercase text-white shadow-xl hover:bg-emerald-500 transition active:scale-95 shadow-emerald-500/20 text-white text-white text-white">LUNAS & CETAK</button>
             `;
         }
 
@@ -591,33 +644,34 @@
             const { name, elapsed, total, type, fid, profit } = lastBilledStation;
             const d = new Date().toLocaleString('id-ID');
             document.getElementById('receipt-content-area').innerHTML = `
-                <div class="text-center mb-8 font-bold uppercase text-black text-black"><h4 class="text-[14px]">ASYRAFUWAIS PLAYSTATION</h4><p class="text-[9px]">Sistem Kasir Cloud PRO</p><p>--------------------------------</p></div>
+                <div class="text-center mb-8 font-bold uppercase text-black text-black"><h4 class="text-[14px]">ASYRAFUWAIS PLAYSTATION</h4><p class="text-[9px]">Professional Billing Cloud</p><p>--------------------------------</p></div>
+                <div class="space-y-1 mb-6 text-[10px] text-black">
+                    <div class="flex justify-between"><span>TANGGAL :</span><span>${d}</span></div>
+                    <div class="flex justify-between"><span>UNIT    :</span><span>${name}</span></div>
+                    <div class="flex justify-between"><span>DURASI  :</span><span>${formatTime(elapsed)}</span></div>
+                </div>
                 <table class="w-full text-[10px] mb-8 text-black">
-                    <tr><td class="py-1 uppercase text-black">SEWA PS (${type})</td><td class="text-right text-black">${formatNumber(total)}</td></tr>
+                    <tr><td class="py-1 uppercase text-black text-black">SEWA PS (${type})</td><td class="text-right text-black">${formatNumber(lastBilledStation.timeCost)}</td></tr>
+                     ${lastBilledStation.orders.map(o => `<tr><td class="py-1 uppercase text-black text-black">${o.name} x${o.qty}</td><td class="text-right text-black">${formatNumber(o.price * o.qty)}</td></tr>`).join('')}
                 </table>
-                <div class="border-t border-black border-dashed pt-4 flex justify-between font-bold text-[14px] uppercase tracking-tighter text-black"><span>TOTAL</span><span>Rp ${formatNumber(total)}</span></div>
-                <div class="text-center mt-12 uppercase font-black text-[13px] border-2 border-black p-3 text-black">LUNAS</div>
+                <div class="border-t border-black border-dashed pt-4 flex justify-between font-bold text-[14px] text-black uppercase tracking-tighter text-black"><span>TOTAL</span><span>Rp ${formatNumber(total)}</span></div>
+                <div class="text-center mt-12 uppercase font-black text-[13px] border-2 border-black p-3 text-black text-black">LUNAS</div>
             `;
-            await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'transactions'), { unitName: name, total, profit, timestamp: serverTimestamp(), dateKey: new Date().toLocaleDateString('id-ID') });
+            await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'transactions'), { unitName: name, total, profit: profit, timestamp: serverTimestamp(), dateKey: new Date().toLocaleDateString('id-ID') });
             await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', fid), { isActive: false, startTime: null, orders: [] });
             document.getElementById('receipt-modal').classList.remove('hidden');
             document.getElementById('summary-panel-card').classList.add('hidden');
             setTimeout(() => window.print(), 300);
         }
 
-        // --- SHORTCUTS ---
-        document.addEventListener('click', async (e) => {
-            const b = e.target.closest('.btn-time-shortcut');
-            if(!b) return;
-            const m = parseInt(b.getAttribute('data-m'));
-            const s = stations.find(st => st.id === activeStationId);
-            if(!s) return;
-            try {
-                await ensureAuth();
+        document.querySelectorAll('.btn-time-shortcut').forEach(b => {
+            b.onclick = async () => {
+                const m = parseInt(b.getAttribute('data-m'));
+                const s = stations.find(st => st.id === activeStationId);
                 await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', s.fid), { isActive: true, isTimed: m > 0, startTime: serverTimestamp(), targetSeconds: m * 60, orders: [] });
                 document.getElementById('time-modal').classList.add('hidden');
                 showToast("Billing dimulai!");
-            } catch (err) { showToast(err.message, "error"); }
+            };
         });
 
         startSystemSync();
