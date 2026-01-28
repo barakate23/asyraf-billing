@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AsyrafUwais PlayStation - Live System v17.0</title>
+    <title>AsyrafUwais PlayStation - Live System v17.1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap');
@@ -48,6 +48,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
+        @media print {
+            body * { visibility: hidden; }
+            #print-area, #print-area * { visibility: visible; color: #000 !important; }
+            #print-area { position: absolute; left: 0; top: 0; width: 100%; }
+            @page { margin: 0; size: auto; }
+            .no-print { display: none !important; }
+        }
+
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
@@ -82,6 +90,7 @@
                 <button data-pro-action="auth-login" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl transition shadow-lg active:scale-95 uppercase tracking-widest text-[11px]">Masuk Sistem</button>
             </div>
             <p id="login-error" class="text-rose-500 text-[10px] font-bold mt-6 hidden uppercase tracking-widest text-center animate-pulse">PIN TIDAK DITEMUKAN</p>
+            <p id="network-error" class="text-orange-500 text-[9px] font-bold mt-2 hidden text-center"></p>
         </div>
     </div>
 
@@ -115,7 +124,7 @@
                 <!-- KOLOM KIRI (66%): UNIT & LAPORAN -->
                 <div class="lg:col-span-8 space-y-6 text-white text-white">
                     
-                    <!-- Laporan Keuangan -->
+                    <!-- Laporan Keuangan Dashboard (Hanya Owner) -->
                     <div id="owner-report-bar" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-white text-white">
                         <div class="glass-card p-4 rounded-[1.2rem] border-l-4 border-blue-500 flex items-center justify-between shadow-lg text-white text-white">
                             <div>
@@ -177,75 +186,49 @@
                 <button data-pro-action="modal-settings-close" class="p-3 bg-slate-800 rounded-2xl hover:bg-rose-600 transition shadow-lg text-white">✕</button>
             </div>
 
-            <div class="flex gap-8 mb-10 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-white">
-                <button class="pb-4 tab-btn tab-active" data-target="tab-manajemen">⚙️ Manajemen</button>
-                <button class="pb-4 tab-btn" id="btn-tab-laporan" data-target="tab-laporan">💰 Laporan Keuangan</button>
-            </div>
-
-            <div id="tab-manajemen" class="setting-tab">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white text-white">
-                    <div class="space-y-8 text-white">
-                        <!-- Unit TV -->
-                        <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
-                            <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Unit TV / PS</h4>
-                            <div id="settings-stations-list" class="space-y-2 mb-6 text-white text-white"></div>
-                            <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white">
-                                <input type="text" id="add-st-name" placeholder="Nama TV (Cth: TV 01)" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white">
-                                <select id="add-st-type" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
-                                    <option value="PS3">PlayStation 3 (8k/jam)</option>
-                                    <option value="PS4">PlayStation 4 (10k/jam)</option>
-                                </select>
-                                <button data-pro-action="submit-st-add" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg">Tambah Unit</button>
-                            </div>
-                        </div>
-
-                        <!-- Akses User -->
-                        <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white text-white">
-                            <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Daftar User</h4>
-                            <div id="settings-users-list" class="space-y-2 mb-6 text-white text-white"></div>
-                            <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white">
-                                <input type="text" id="add-user-name" placeholder="Nama User" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                                <input type="password" id="add-user-pin" placeholder="PIN" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                                <select id="add-user-role" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
-                                    <option value="kasir">Akses: Kasir</option>
-                                    <option value="owner">Akses: Owner</option>
-                                </select>
-                                <button data-pro-action="submit-user-add" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white">Simpan User</button>
-                            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white text-white">
+                <div class="space-y-8 text-white">
+                    <!-- Unit TV -->
+                    <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
+                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Daftar Unit TV</h4>
+                        <div id="settings-stations-list" class="space-y-2 mb-6 text-white text-white"></div>
+                        <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white">
+                            <input type="text" id="add-st-name" placeholder="Nama TV (Cth: TV 01)" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white">
+                            <select id="add-st-type" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
+                                <option value="PS3">PlayStation 3 (8k/jam)</option>
+                                <option value="PS4">PlayStation 4 (10k/jam)</option>
+                            </select>
+                            <button data-pro-action="submit-st-add" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg">Tambah Unit</button>
                         </div>
                     </div>
 
-                    <!-- Manajemen Menu -->
-                    <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
-                        <h4 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white text-white">Manajemen Menu</h4>
-                        <div id="settings-menu-list" class="space-y-2 mb-6 text-white text-white text-white"></div>
-                        <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white text-white">
-                            <input type="text" id="add-mn-name" placeholder="Nama Produk/Makanan" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                            <div class="grid grid-cols-2 gap-2 text-white text-white text-white">
-                                <input type="number" id="add-mn-modal" placeholder="Modal" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
-                                <input type="number" id="add-mn-price" placeholder="Harga Jual" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
-                            </div>
-                            <button data-pro-action="submit-mn-add" class="w-full py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white text-white">Tambah Ke Menu</button>
+                    <!-- Akses User -->
+                    <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white text-white">
+                        <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white">Daftar User</h4>
+                        <div id="settings-users-list" class="space-y-2 mb-6 text-white text-white"></div>
+                        <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white">
+                            <input type="text" id="add-user-name" placeholder="Nama User" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
+                            <input type="password" id="add-user-pin" placeholder="PIN" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
+                            <select id="add-user-role" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
+                                <option value="kasir">Akses: Kasir</option>
+                                <option value="owner">Akses: Owner</option>
+                            </select>
+                            <button data-pro-action="submit-user-add" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white">Simpan User</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="tab-laporan" class="setting-tab hidden">
-                 <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/5 shadow-inner text-white">
-                    <h4 class="text-xs font-black text-white uppercase tracking-widest mb-6 italic">History Transaksi</h4>
-                    <div class="overflow-x-auto custom-scrollbar">
-                        <table class="w-full text-left text-[11px]">
-                            <thead>
-                                <tr class="text-slate-400 border-b border-white/10 font-black uppercase">
-                                    <th class="py-4">Waktu</th>
-                                    <th>Unit</th>
-                                    <th>Total Tagihan</th>
-                                    <th class="text-emerald-400">Profit</th>
-                                </tr>
-                            </thead>
-                            <tbody id="transaction-history-list" class="font-mono"></tbody>
-                        </table>
+                <!-- Manajemen Menu -->
+                <div class="bg-white/5 p-5 rounded-[1.5rem] border border-white/5 shadow-inner text-white">
+                    <h4 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-4 italic underline underline-offset-8 text-white text-white">Manajemen Menu</h4>
+                    <div id="settings-menu-list" class="space-y-2 mb-6 text-white text-white text-white"></div>
+                    <div class="space-y-3 bg-black/30 p-4 rounded-xl text-white text-white text-white">
+                        <input type="text" id="add-mn-name" placeholder="Nama Produk/Makanan" class="w-full bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
+                        <div class="grid grid-cols-2 gap-2 text-white text-white text-white">
+                            <input type="number" id="add-mn-modal" placeholder="Modal" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs text-white text-white">
+                            <input type="number" id="add-mn-price" placeholder="Harga Jual" class="bg-slate-900 border border-white/10 rounded-lg p-3 outline-none text-xs font-bold text-white text-white text-white">
+                        </div>
+                        <button data-pro-action="submit-mn-add" class="w-full py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg font-black text-[10px] uppercase tracking-widest transition shadow-lg text-white text-white">Tambah Ke Menu</button>
                     </div>
                 </div>
             </div>
@@ -262,7 +245,7 @@
                     <button class="btn-time-shortcut py-3 rounded-lg bg-slate-800 font-bold hover:bg-slate-700 transition text-[10px]" data-m="120">2 Jam</button>
                     <button class="btn-time-shortcut col-span-2 py-3 rounded-lg bg-emerald-600/20 text-emerald-400 font-black border border-emerald-500/20 hover:bg-emerald-600/30 transition uppercase text-[9px]" data-m="0">Mode Argo (Bayar Per Menit)</button>
                 </div>
-                <div class="grid grid-cols-2 gap-3 text-white text-white text-white">
+                <div class="grid grid-cols-2 gap-3 text-white text-white text-white text-white">
                     <input type="number" id="h-input-custom" placeholder="Jam" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white text-white text-white">
                     <input type="number" id="m-input-custom" placeholder="Menit" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 text-center font-bold text-xl outline-none shadow-inner text-white text-white text-white">
                 </div>
@@ -275,7 +258,7 @@
     </div>
 
     <!-- Modal Resit -->
-    <div id="receipt-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white text-white text-white text-white">
+    <div id="receipt-modal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 hidden no-print text-white text-white text-white text-white text-white">
         <div class="receipt-paper w-full max-w-[340px] p-8 rounded-sm mx-auto shadow-2xl animate-in zoom-in-95 duration-300 text-black">
             <div id="receipt-content-area" class="text-[11px] leading-tight font-mono text-black text-black text-black text-black"></div>
             <div class="flex gap-3 mt-10 no-print text-white text-white text-white text-white">
@@ -290,7 +273,7 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, serverTimestamp, deleteDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // --- KONFIGURASI DARI GAMBAR ---
+        // --- KONFIGURASI SESUAI GAMBAR ---
         const firebaseConfig = {
           apiKey: "AIzaSyCjcWLDqxPE6T8OFL0QHzhYBOfbStEKSFU",
           authDomain: "asyrafuwais-ps.firebaseapp.com",
@@ -305,7 +288,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // KUNCI ID DATABASE TETAP (V17)
+        // KUNCI ID DATABASE BARU (V17)
         const appId = 'asyrafuwais-ps-v17-stable-live';
         const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
@@ -335,19 +318,25 @@
         let currentDraftOrder = null;
         let currentUserData = null; 
 
-        // --- AUTH ---
+        // --- ERROR HANDLING AUTH ---
         const ensureAuth = async () => {
             if (!auth.currentUser) {
                 try {
                     await signInAnonymously(auth);
                 } catch (error) {
-                    console.error("Auth:", error);
-                    alert("Gagal masuk Cloud. Pastikan internet lancar.");
+                    if (error.code === 'auth/admin-restricted-operation') {
+                        alert("PENTING: Aktifkan 'Anonymous' di Firebase Console > Authentication > Sign-in method.");
+                    } else if (error.code === 'auth/unauthorized-domain') {
+                        alert("PENTING: Masukkan 'barakate23.github.io' di Firebase Console > Authentication > Settings > Authorized Domains");
+                    } else {
+                        console.error("Auth Error:", error);
+                        showToast("Koneksi Gagal: " + error.message, "error");
+                    }
                 }
             }
         };
 
-        // --- SYNC ENGINE ---
+        // --- SINKRONISASI DATA ---
         async function startSystemSync() {
             await ensureAuth();
             onAuthStateChanged(auth, (user) => {
@@ -355,17 +344,18 @@
                     onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'stations'), (snap) => {
                         const data = []; snap.forEach(d => data.push({ fid: d.id, ...d.data() }));
                         stations = data.sort((a,b) => a.id - b.id);
-                        document.getElementById('sync-label').textContent = "CLOUD TERHUBUNG";
+                        const label = document.getElementById('sync-label');
+                        if(label) label.textContent = "CLOUD TERHUBUNG";
                         renderStationsUI();
                         renderSettingsStations();
-                    });
+                    }, (err) => console.error("Permission denied: stations"));
 
                     onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'cafe_menu'), (snap) => {
                         const data = []; snap.forEach(d => data.push({ fid: d.id, ...d.data() }));
                         cafeMenu = data;
                         renderCafeMenuUI();
                         renderSettingsMenu();
-                    });
+                    }, (err) => console.error("Permission denied: menu"));
 
                     if(currentUserData?.role === 'owner') {
                         const rBar = document.getElementById('owner-report-bar');
@@ -394,34 +384,43 @@
             if(!pin) return;
             await ensureAuth();
             
-            const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'users'));
-            let found = null;
-            
-            if(snap.empty && pin === "1234") {
-                found = { name: "Root Owner", role: "owner", pin: "1234" };
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `u-${Date.now()}`), found);
-            } else {
-                snap.forEach(d => { if(d.data().pin === pin) found = { fid: d.id, ...d.data() }; });
-            }
-            
-            if (found) {
-                currentUserData = found;
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('main-app').classList.remove('hidden');
-                const roleEl = document.getElementById('role-text-display');
-                if(roleEl) roleEl.textContent = `Role: ${found.name} (${found.role.toUpperCase()})`;
-                if(found.role === 'owner') {
-                    const navSet = document.getElementById('nav-setting-btn');
-                    if(navSet) navSet.classList.remove('hidden');
+            try {
+                const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'users'));
+                let found = null;
+                
+                if(snap.empty && pin === "1234") {
+                    found = { name: "Root Owner", role: "owner", pin: "1234" };
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', `u-${Date.now()}`), found);
+                } else {
+                    snap.forEach(d => { if(d.data().pin === pin) found = { fid: d.id, ...d.data() }; });
                 }
-                startSystemSync();
-            } else { 
-                const errEl = document.getElementById('login-error');
-                if(errEl) errEl.classList.remove('hidden'); 
+                
+                if (found) {
+                    currentUserData = found;
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('main-app').classList.remove('hidden');
+                    const roleEl = document.getElementById('role-text-display');
+                    if(roleEl) roleEl.textContent = `Role: ${found.name} (${found.role.toUpperCase()})`;
+                    if(found.role === 'owner') {
+                        const navSet = document.getElementById('nav-setting-btn');
+                        if(navSet) navSet.classList.remove('hidden');
+                    }
+                    startSystemSync();
+                } else { 
+                    const errEl = document.getElementById('login-error');
+                    if(errEl) errEl.classList.remove('hidden'); 
+                }
+            } catch (err) {
+                console.error(err);
+                if (err.code === 'permission-denied') {
+                     alert("Akses Database Ditolak. Pastikan Rules Firebase benar.");
+                } else if (err.code === 'auth/network-request-failed') {
+                    alert("Gagal terhubung. Cek koneksi internet.");
+                }
             }
         };
 
-        // --- MASTER EVENT HANDLER (GLOBAL) ---
+        // --- GLOBAL CLICK HANDLER ---
         document.addEventListener('click', async (e) => {
             const btn = e.target.closest('[data-pro-action]');
             if (!btn) return;
@@ -473,7 +472,7 @@
                 // DELETE & EDIT
                 else if (action === 'delete-st' && confirm("Hapus Unit ini secara permanen?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'stations', fid)); showToast("Unit dipadam"); }
                 else if (action === 'delete-mn' && confirm("Hapus Menu ini secara permanen?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cafe_menu', fid)); showToast("Menu dipadam"); }
-                else if (action === 'delete-usr' && confirm("Cabut Akses User?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', fid)); showToast("Akses dicabut"); }
+                else if (action === 'delete-usr' && confirm("Hapus User?")) { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', fid)); showToast("Akses dicabut"); }
                 else if (action === 'edit-st') {
                     const st = stations.find(x => x.fid === fid);
                     if(st) {
@@ -609,7 +608,7 @@
         function renderSettingsUsers() {
             const list = document.getElementById('settings-users-list');
             if(!list) return;
-            list.innerHTML = users.map(u => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${u.name}</p><p class="text-[8px] text-slate-400 uppercase text-white text-white text-white">${u.role}</p></div><button data-pro-action="delete-usr" data-fid="${u.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div>`).join('');
+            list.innerHTML = users.map(u => `<div class="flex justify-between items-center p-3 bg-white/5 rounded-xl border border-white/5 text-white text-white text-white"><div><p class="font-bold text-xs uppercase text-white">${u.name}</p><p class="text-slate-400 text-[10px] uppercase text-white">${u.role}</p></div><button data-pro-action="delete-usr" data-fid="${u.fid}" class="px-3 py-1.5 bg-rose-600/10 text-rose-500 rounded-lg text-[8px] font-black">Hapus</button></div>`).join('');
         }
 
         function triggerFinalSummary(id) {
@@ -663,7 +662,6 @@
             setTimeout(() => window.print(), 300);
         }
 
-        // --- PINTASAN MASA ---
         document.querySelectorAll('.btn-time-shortcut').forEach(b => {
             b.onclick = async () => {
                 const m = parseInt(b.getAttribute('data-m'));
